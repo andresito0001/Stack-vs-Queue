@@ -5,8 +5,23 @@ public class Stack<T> extends Group<T> {
         this.elements = new List<>();
     }
 
+    public Stack(Stack<T> otherStack) {
+        this.elements = new List<>();
+
+        int size = otherStack.size();
+
+        for (int i = 0; i < size; i++) {
+            T element = otherStack.elements.getData(i);
+            this.add(element);
+        }
+    }
+
     public T add(T data) {
        return elements.add(data);
+    }
+
+    public T addFirst(T data) {
+        return elements.addFirst(data);
     }
 
     public T remove() {
@@ -23,24 +38,29 @@ public class Stack<T> extends Group<T> {
         return elements.getData(elements.size() - 1);
     }
 
-    public boolean isEmpty() { return elements.isEmpty(); }
+    public boolean contains(T key) {
+        for (int i = 0; i < this.size(); i++) {
+            T element = this.elements.getData(i);
+            if (element.equals(key))
+                return true;
+        }
+        return false;
+    }
 
-    /**
-     * Posiblemente cambie esta funcion a algo mejor...
-     * el tema es que no me gusta que tenga que invocar a toString()
-     * varias veces
-     */
+    public boolean isEmpty() { return elements.isEmpty(); }
+    public int size() { return elements.size(); }
+    
     public String show() {
+        StringBuilder sb = new StringBuilder();
         Node<T> current = elements.getNode(0);
-        String stackElementsToString = "";
 
         while (current != null) {
-            stackElementsToString += current.getData().toString() + " ";
+            sb.append(current.getData().toString()).append(" ");
             current = current.next;
         }
-
-        return stackElementsToString.toString();
+        return sb.toString();
     }
-    
-    private List<T> elements;
+
+    protected List<T> elements;
 }
+

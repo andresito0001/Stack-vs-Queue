@@ -22,6 +22,20 @@ public class List<T> {
         return newNode.getData();
     }
 
+    public T addFirst(T data) {
+        Node<T> newNode = new Node<>(data);
+        if (isEmpty()) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            newNode.next = head;
+            head = newNode;
+        }
+    
+        this.size++;
+        return data;
+    }
+
     public T remove(Integer index) {
         if (index < 0 || index >= size()) {
             throw new IndexOutOfBoundsException();
@@ -80,7 +94,8 @@ public class List<T> {
 
     public boolean isEmpty() { return this.head == null; }
     public int size() { return this.size; }
-
+    public void incrementSize() { this.size++; }
+    
     private int size;
     private Node<T> head;
     private Node<T> tail;

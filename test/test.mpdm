@@ -1,0 +1,12 @@
+CREATE STACK POKEDEX
+Chikorita/Grass, Feraligatr/Water, Piplup/Water
+CREATE QUEUE POKEDEX
+Blastoise/Water, Feraligatr/Water, Sceptile/Grass, Gorebyss/Water, Piplup/Water, Tepig/Fire, Torchic/Fire, Typhlosion/Fire, Rapidash/Fire
+SHOW STACK POKEDEX
+CREATE STACK TEAM
+Grass Water
+CREATE QUEUE TEAM
+Fire Fire Fire
+SHOW STACK TEAM
+SHOW QUEUE TEAM
+ENCOUNTER

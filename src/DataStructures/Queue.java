@@ -3,8 +3,23 @@ package DataStructures;
 public class Queue<T> extends Group<T>{
     public Queue() { this.elements = new List<>(); }
 
-    public T add(T elemento) {
-        return elements.add(elemento);
+    public Queue(Queue<T> other) {
+        this.elements = new List<>();
+
+        int size = other.size();
+
+        for (int i = 0; i < size; i++) {
+            T element = other.elements.getData(i);
+            this.add(element);
+        }
+    }
+
+    public T add(T data) {
+        return elements.add(data);
+    }
+
+    public T addFirst(T data) {
+        return elements.addFirst(data);
     }
 
     public T remove() {
@@ -13,17 +28,25 @@ public class Queue<T> extends Group<T>{
 
         return elements.remove(0);
     }
+    
+    public boolean contains(T key) {
+        for (int i = 0; i < this.size(); i++) {
+            T element = this.elements.getData(i);
+            if (element.equals(key))
+                return true;
+        }
+        return false;
+    }
 
     public String show() {
+        StringBuilder sb = new StringBuilder();
         Node<T> current = elements.getNode(0);
-        String queueElelemntsToString = "";
 
-        while(current != null) {
-            queueElelemntsToString += current.getData().toString() + " ";
+        while (current != null) {
+            sb.append(current.getData().toString()).append(" ");
             current = current.next;
         }
-
-        return queueElelemntsToString.toString();
+        return sb.toString();
     }
 
     public T peek() {
@@ -37,5 +60,7 @@ public class Queue<T> extends Group<T>{
         return elements.isEmpty();
     }
 
-    private List<T> elements;
+    public int size() { return elements.size(); }
+    
+    protected List<T> elements;
 }

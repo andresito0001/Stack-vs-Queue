@@ -14,5 +14,10 @@ public class PoketMonster {
 
     public String getType() { return this.type; }
 
+    public static boolean isEqualsPokemons(PoketMonster p1, PoketMonster p2) {
+        return p1.getName().trim().equals(p2.getName().trim()) &&
+            p1.getType().trim().equals(p2.getType().trim());
+    }
+
     private String name, type;
 }
